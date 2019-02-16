@@ -18,7 +18,7 @@ class Education(AbstractBaseModel):
     link = models.URLField('School URL',blank=True)
     start_date = models.DateField(null=True,blank=True)
     end_date = models.DateField(null=True,blank=True)
-    is_current = models.BooleanField(default=False,blank=True,null=True)
+    #is_current = models.BooleanField(default=False,blank=True,null=True)
     description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="education_user")
 
