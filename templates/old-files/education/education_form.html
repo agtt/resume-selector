@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+    <div class="page-header bgdarkblue" style="background-image: url('{% get_media_prefix %}assets/img/login-image.jpgs');">
+        <div class="text-center">
+            <div class="container">
+                <h2 class="title">Add Education</h2>
+
+               <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.location|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.start_date|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.end_date|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.link|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.fieldOfStudy|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form.description|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Save Education</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block addjs %}
+<script>
+$(document).ready(function() {
+    $('.dateinput').datepicker({ format: "yyyy-mm-dd" });
+});
+
+</script>
+{% endblock %}

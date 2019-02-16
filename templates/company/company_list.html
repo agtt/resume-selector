@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container page-content" id="app">
+    <div class="ng-fadeInLeftShort ">
+        <div class="container-overlap bg-blue-500">
+            <div class="media m0 pv">
+                <div class="media-left">
+                    <a href="#">
+                        <img src="http://linkedin-clone.itechscripts.com/site_assets/img/company.png" alt="User"
+                             class="media-object  thumb64">
+                    </a>
+                </div>
+                <div class="media-body media-middle">
+                    <h4 class="media-heading text-white">Search your favourite companies</h4>
+                    <span class="text-white" id="exec_time"> </span>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <form id="filter">
+                        <div class="card">
+                            <div class="panel-heading"
+                                 style="background-color: #fff;border-bottom: 1px solid #80808066 !important;">
+                                <h3 class="panel-title">Filter company <a
+                                        href="http://linkedin-clone.itechscripts.com/company/companies_search"
+                                        title="Reset" class="btn btn-default  btn-circle btn-xs pull-right"><i
+                                        class="glyphicon glyphicon-refresh"></i></a></h3>
+                            </div>
+                            <div class="card-body pb0">
+                                <div class="row" style="background-color:#fff;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="sminput">Company</label>
+                                            <input type="text" onkeyup="ajax_company_search();" value="" id="company"
+                                                   name="company" class="form-control input-sm "
+                                                   placeholder="i.e TCS,CTS,Indusnet...etc">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="sminput">Country</label>
+                                            <select id="country" onchange="ajax_company_search();" name="country"
+                                                    class="form-control">
+                                                <option value="0" selected>Select Country</option>
+                                                <option value="1">India</option>
+                                                <option value="2">Australia</option>
+                                                <option value="3">South Africa</option>
+                                                <option value="4">Pakistan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Left column-->
+                <div class="col-md-8">
+                    <div class="main-box clearfix" id="show_searching" style="display:none;">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                <tr style="background-color: #fff;">
+                                    <th><span>Job Title</span></th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <div>
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 100%;margin-left: 37px;" align="center" colspan='2'>
+                                            <div>
+                                                <img src="http://linkedin-clone.itechscripts.com/site_assets/img/searching.gif"
+                                                     style="max-width:200px;height:150px;"/><br>
+                                                <font color="grey" size="4px">Please wait....</font>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="ajax_company_search">
+                        <div id="ajax_company_search" style="display: block;">
+                            <div class="main-box clearfix" id="searching">
+                                <div class="panel-heading"
+                                     style="background-color: #fff;border-bottom: 1px solid #80808066 !important;">
+                                    <h3 class="panel-title">Companies</h3>
+                                </div>
+                                <div v-for="item in list_data">
+                                    <div class="panel panel-default" style="margin-bottom: 5px;">
+                                        <div class="panel-heading">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    <img src="http://linkedin-clone.itechscripts.com/site_assets/company_logo/Accenture20140227120354.png"
+                                                         alt="Company Logo" class="media-object">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading margin-v-5"><a
+                                                            href="http://linkedin-clone.itechscripts.com/company/company_details/6"
+                                                            target="_blank" title="Accenture">[[item.name]]</a></h4>
+                                                    <div class="profile-icons">
+                                                    <span class="user-subhead" style="color:grey;"><i
+                                                            class="fa fa-briefcase"></i> 1971</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body" style="margin-top: -13px;margin-bottom: -23px;">
+                                            <span><i class="fa fa-map-marker"></i> India</span><br>
+                                            <p class="user-subhead" style="font-style: normal;"><span
+                                                    style="font-weight:bold;letter-spacing: 1px;">Description : </span>
+                                            </p>
+                                            <p style="margin-top: 5px;text-align:justify;">Accenture is a global
+                                                management
+                                                consulting, technology services and outsourcing company, with more than
+                                                244,000 people serving clients in more than 120 countries. Combining
+                                                unpara....</p>
+                                            <p></p>
+
+                                            <p class="user-subhead" style="font-style: normal;"><span
+                                                    style="font-weight:bold;letter-spacing: 1px;">Address : </span></p>
+                                            <p style="margin-top: 5px;text-align:justify;">11/3H, Canal Circular Road,
+                                                Via
+                                                gurudas dutta Garden Lane, Kolkata, West Bengal 700067</p>
+                                            <p></p>
+                                        </div>
+                                        <div class="panel-footer" style="padding: 7px 10px 7px 0px;">
+			<span id="ajax_follow_company_6">
+						<a class="btn btn-info shiny btn-primary" style="font-size: 15px;margin-left:7px;"
+                           href="javascript:follow_job('6');"><i class="fa fa-plus-square"></i>Follow</a> &nbsp;
+						</span>
+                                            <a class="btn btn-info shiny btn-success"
+                                               style="font-size: 15px;margin-left:7px;"
+                                               href="http://linkedin-clone.itechscripts.com/company/company_details/6"
+                                               target="_blank"><i class="fa fa-info-circle"></i>Details</a> &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="pull-right">
+                                    <v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Right column-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block afterjs %}
+<script>
+  new Vue({
+  el: '#app',
+  delimiters: ['[[', ']]'],
+  data () {
+    return {
+      info: null,
+      list_data : [],
+      resource_url : '/api/company/?format=json'
+    }
+  },
+  components: {
+    VPaginator: VuePaginator
+  },
+  mounted () {
+    axios
+      .get('/api/company/?format=json')
+      .then(response => (this.list_data = response.data))
+  },
+  methods: {
+    updateResource(data){
+      this.list_data = data
+    }
+    }
+})
+
+
+</script>
+{% endblock %}

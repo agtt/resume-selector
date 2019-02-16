@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="wrapper" id="app">
+    <h2>Experience List</h2>
+    <div class="page-header bgdarkblue">
+        <div class="container">
+            <div class="row text-center">
+                <h2>Experience List</h2>
+            </div>
+            <div class="row">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+            </tr>
+            </thead>
+            <tbody>
+             <tr v-for="(item,key) in experience_list">
+                 <td>[[ item.name ]]</td>
+                 <td>[[ item.position ]]</td>
+                 <td>[[ item.start_date ]]</td>
+                 <td>[[ item.end_date ]]</td>
+             </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block afterjs %}
+<script>
+  new Vue({
+  el: '#app',
+  delimiters: ['[[', ']]'],
+  data () {
+    return {
+      info: null,
+      experience_list : []
+    }
+  },
+  mounted () {
+    axios
+      .get('/api/experience/?format=json')
+      .then(response => (this.experience_list = response.data))
+  }
+})
+</script>
+{% endblock %}

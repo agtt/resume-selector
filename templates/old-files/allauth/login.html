@@ -1,0 +1,59 @@
+{% extends 'allauth/authbase.html' %}
+{% load static %}
+{% block title %}Login {% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div class="page-header" style="background-image: url('{% get_media_prefix %}assets/img/linkedin-back.jpg');">
+        <div class="filter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto mr-auto">
+                    <div class="card card-register">
+                        <h3 class="title">Login</h3>
+                        {% if form.errors %}
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="social-line text-center">
+                             <a href="/account/linkedin/login/?process=login" class="btn btn-neutral btn-linkedin btn-just-icon">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div>
+                        <form method="post" class="register-form" action="{% url 'account_login' %}">
+                            {% csrf_token %}
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="login" placeholder="Email">
+
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <button class="btn btn-danger btn-block btn-round">Login</button>
+                        </form>
+                        <div class="forgot">
+                            <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,795 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n avatar_tags %}
+
+{% block title %}{% trans "My profile" %}{% endblock %}
+
+{% block content %}
+
+<div class="container page-content">
+
+    <div class="wrapper" id="app">
+        <div class="container">
+            <div class="wraper">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="bg-picture text-center" id="myCover"
+                             style="background-image:url('http://linkedin-clone.itechscripts.com/site_assets/customer/dp/profile-cover1.jpg')">
+                            <div class="bg-picture-overlay">
+                                <form id="asd1" enctype="multipart/form-data" action="javascript:void(0);"
+                                      method="post">
+                                    <input type="file" style="display:none;" id="fileUpload1" name="cover_photo"
+                                           onchange="loadFile1(event)"/>
+                                    <button type="button" style="display:none;" id="submit_cp" name="submit_cp"
+                                            value="Upload"/>
+                                </form>
+                            </div>
+                            <a style="float:left;margin-top:-101px;" onclick='return OpenFileBrowser1(event)'
+                               href="javascript:void(0);" title="Change cover photo"
+                               class="btn btn-info  btn-square btn-lg"><i class="glyphicon glyphicon-camera"></i></a>
+                            <div class="profile-info-name">
+                                <img id="output"
+                                     onmouseout="prev_image('http://linkedin-clone.itechscripts.com/site_assets/customer/dp/LinkedIn-profile-photo2_-_Copy.jpg');"
+                                     onmouseover="change_image();" style="height: 164px;cursor:pointer;"
+                                     onclick='return OpenFileBrowser(event)'
+                                     src="http://linkedin-clone.itechscripts.com/site_assets/customer/dp/LinkedIn-profile-photo2_-_Copy.jpg"
+                                     class="thumb-lg img-circle img-thumbnail" title="Change your image"
+                                     alt="profile-image">
+                                <!--<i class="glyphicon glyphicon-camera" onclick='return OpenFileBrowser(event)' style="margin-left: -27px;color: #0095ff ;font-size: 17px;cursor:pointer;" title="Upload profile image"></i>-->
+                                <form id="asd" enctype="multipart/form-data" action="javascript:void(0);" method="post">
+                                    <input type="file" style="display:none;" id="fileUpload" name="image"
+                                           onchange="loadFile(event)"/>
+                                    <button type="submit" style="display:none;" id="submit" value="Upload"/>
+                                </form>
+                            </div>
+                            <h3 class="profile-info-name text-white">{{user.username}}</h3>
+                        </div>
+                        <!--/ meta -->
+                    </div>
+                </div>
+                <div class="row user-tabs">
+                    <div class="col-lg-6 col-md-9 col-sm-9">
+                        <ul class="nav nav-tabs tabs" style="width: 100%;">
+                            <li class="active tab" style="width: 25%;">
+                                <a href="#home-2" data-toggle="tab" aria-expanded="false" class="active">
+                                    <span class="visible-xs"><i class="fa fa-home"></i></span>
+                                    <span class="hidden-xs">About Me</span>
+                                </a>
+                            </li>
+                            <li class="tab" style="width: 25%;">
+                                <a href="#friends-tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs"><i class="fa fa-user"></i></span>
+                                    <span class="hidden-xs">Friends</span>
+                                </a>
+                            </li>
+                            <li class="tab" style="width: 25%;">
+                                <a href="#photos-tab" data-toggle="tab" aria-expanded="true">
+                                    <span class="visible-xs"><i class="fa fa-picture-o"></i></span>
+                                    <span class="hidden-xs">Photos</span>
+                                </a>
+                            </li>
+                            <li class="tab" style="width: 25%;">
+                                <a href="#videos-tab" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs"><i class="fa fa-video-camera"></i></span>
+                                    <span class="hidden-xs">Videos</span>
+                                </a>
+                            </li>
+                            <div class="indicator" style="right: 476px; left: 0px;"></div>
+                            <div class="indicator" style="right: 476px; left: 0px;"></div>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-3 col-sm-3 hidden-xs">
+                        <div class="pull-right">
+                            <div class="dropdown">
+                                <a data-toggle="dropdown"
+                                   class="dropdown-toggle btn-rounded btn btn-primary waves-effect waves-light"
+                                   href="#"> <span id="countdown" class="timer"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+function update_my_package(){
+	$.post(
+	'http://linkedin-clone.itechscripts.com/account/ajax_update_my_package',
+	{},
+	function(r){
+
+	}
+	);
+}
+var upgradeTime =2434112;
+var seconds = upgradeTime;
+function timer() {
+    var days        = Math.floor(seconds/24/60/60);
+    var hoursLeft   = Math.floor((seconds) - (days*86400));
+    var hours       = Math.floor(hoursLeft/3600);
+    var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
+    var minutes     = Math.floor(minutesLeft/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;
+    }
+    document.getElementById('countdown').innerHTML = "Premium package expired in : "+days + "d :" + hours + "h :" + minutes + "m :" + remainingSeconds+ "s";
+    if (seconds == 0) {
+        clearInterval(countdownTimer);
+		update_my_package();
+        document.getElementById('countdown').innerHTML = "You have purchase free package";
+    } else {
+        seconds--;
+    }
+}
+var countdownTimer = setInterval('timer()', 1000);
+
+                    </script>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="tab-content profile-tab-content">
+                            <div class="tab-pane active" id="home-2">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_profile_info1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Profile <img id="decision_profile_info11"
+                                                                                     src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                                                     style="width:22px;height:22px;display:none;"/>
+                                                    <span id="decision_profile_info"><a
+                                                            class="btn btn-default panel-title pull-right"
+                                                            style="border: none;color:blue;"
+                                                            href="javascript:ajax_profile_field();"><i
+                                                            class="fa fa-edit"></i> Update Profile</a></span></h3>
+
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" id="ajax_profile_field">
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Full Name</strong>
+                                                            <br>
+                                                            <p class="text-muted">John Doe</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Email</strong>
+                                                            <br>
+                                                            <p class="text-muted">{{request.user.email}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Country</strong>
+                                                            <br>
+                                                            <p class="text-muted">India</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>City</strong>
+                                                            <br>
+                                                            <p class="text-muted">Mumbai</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Zip Code</strong>
+                                                            <br>
+                                                            <p class="text-muted">700150</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p class="text-black pull-right" style="font-size:11px;">Joined
+                                                            on 10th February, 2019</p><br>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+                                        <!-- Languages -->
+                                        <div class="panel panel-default panel-fill" id="decision_language_field1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Languages <img id="decision_language_field11"
+                                                                                       src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                                                       style="width:22px;height:22px;display:none;"/><span
+                                                        id="decision_language_field"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_language_field();"><i
+                                                        class="fa fa-plus"></i> Update Language</a></span></h3>
+                                            </div>
+                                            <div class="panel-body" id="ajax_language_field">
+                                                <ul>
+                                                    <li>English ( Read, Write, Speak ) <span id=""><a
+                                                            class="btn btn-default panel-title"
+                                                            style="border: none;color:#00fc;"
+                                                            href="javascript:ajax_language_field_delete('4');"><i
+                                                            class="fa fa-trash"></i> Delete</a></span></li>
+                                                    <li>Hindi ( Read, Write, Speak ) <span id=""><a
+                                                            class="btn btn-default panel-title"
+                                                            style="border: none;color:#00fc;"
+                                                            href="javascript:ajax_language_field_delete('5');"><i
+                                                            class="fa fa-trash"></i> Delete</a></span></li>
+                                                    <li>Bengali ( Read, Write, Speak ) <span id=""><a
+                                                            class="btn btn-default panel-title"
+                                                            style="border: none;color:#00fc;"
+                                                            href="javascript:ajax_language_field_delete('6');"><i
+                                                            class="fa fa-trash"></i> Delete</a></span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- Languages -->
+
+                                    </div>
+
+
+                                    <div class="col-md-8">
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_biography_info1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Biography <img id="decision_biography_info11"
+                                                                                       src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                                                       style="width:22px;height:22px;display:none;"/><span
+                                                        id="decision_biography_info"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_biography_field();"><i
+                                                        class="fa fa-plus"></i> Add / Update Biography</a></span></h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" id="ajax_biography_field">
+                                                    <div class="col-md-12">
+                                                        <p class="text-muted">It is a long established fact that a
+                                                            reader will be distracted by the readable content of a page
+                                                            when looking at its layout. The point of using Lorem Ipsum
+                                                            is that it has a more-or-less normal distribution of
+                                                            letters, as opposed to using 'Content here, content here',
+                                                            making it look like readable English. Many desktop
+                                                            publishing packages and web page editors now use Lorem Ipsum
+                                                            as their default model text, and a search for 'lorem ipsum'
+                                                            will uncover many web sites still in their infancy. Various
+                                                            versions have evolved over the years, sometimes by accident,
+                                                            sometimes on purpose (injected humour and the like).</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_position1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Position & Experience <img
+                                                        id="decision_position11"
+                                                        src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                        style="width:22px;height:22px;display:none;"/> <span
+                                                        id="decision_position"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_position_field();"><i
+                                                        class="fa fa-plus"></i> Add Position & Experience</a></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" v-for="(item,key) in experience_list">
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>[[ item.position ]]</strong><span id=""><a
+                                                                class="btn btn-default panel-title"
+                                                                style="border: none;color:#00fc;"
+                                                                href="javascript:ajax_position_field_edit('1');"><i
+                                                                class="fa fa-edit"></i> Edit</a></span><span id=""><a
+                                                                class="btn btn-default panel-title"
+                                                                style="border: none;color:#00fc;"
+                                                                href="javascript:ajax_position_field_delete('1');"><i
+                                                                class="fa fa-trash"></i> Delete</a></span>
+                                                            <br>
+                                                            <p class="text-muted">CTS</p>
+                                                            <p class="text-muted" style="margin-top:0px;">Computer
+                                                                Software</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_education_info1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Education <img id="decision_education_info11"
+                                                                                       src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                                                       style="width:22px;height:22px;display:none;"/><span
+                                                        id="decision_education_info"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_education_info_field();"><i
+                                                        class="fa fa-plus"></i> Add education information</a></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" style="" id="ajax_education_info_field">
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Calcutta University</strong><span id=""><a
+                                                                class="btn btn-default panel-title"
+                                                                style="border: none;color:#00fc;"
+                                                                href="javascript:ajax_education_info_field_edit('1');"><i
+                                                                class="fa fa-edit"></i> Edit</a></span><span id=""><a
+                                                                class="btn btn-default panel-title"
+                                                                style="border: none;color:#00fc;"
+                                                                href="javascript:ajax_education_info_field_delete('1');"><i
+                                                                class="fa fa-trash"></i> Delete</a></span>
+                                                            <br>
+                                                            <p class="text-muted">M.Sc, Computer Science (India)</p>
+                                                            <p class="text-muted" style="margin-top:0px;">2009 -
+                                                                2016</p>
+                                                            <p class="text-muted" style="margin-top:0px;">Grade : A+</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_additional_info1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Additional Information <img
+                                                        id="decision_additional_info11"
+                                                        src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                        style="width:22px;height:22px;display:none;"/> <span
+                                                        id="decision_additional_info"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_aditional_info_field();"><i
+                                                        class="fa fa-plus"></i> Add / Update additional information</a></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" style="" id="ajax_aditional_info_field">
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Websites</strong>
+                                                            <br>
+                                                            <p class="text-muted">google.com (Personal Website)</p><br>
+                                                            <p class="text-muted" style="margin-top: -21px;">yahoo.com
+                                                                (Company Website)</p><br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Interests</strong>
+                                                            <br>
+                                                            <p class="text-muted">N/A</p></div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Groups and Associations</strong>
+                                                            <br>
+                                                            <p class="text-muted">N/A</p></div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Honors and Awards</strong>
+                                                            <br>
+                                                            <p class="text-muted">N/A</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_personal1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Personal Information <img
+                                                        id="decision_personal11"
+                                                        src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                        style="width:22px;height:22px;display:none;"/> <span
+                                                        id="decision_personal"> <a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_personal_info_field();"><i
+                                                        class="fa fa-plus"></i> Add / Update Personal Information</a></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" style="" id="ajax_personal_info_field">
+
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Phone</strong>
+                                                            <br>
+                                                            <p class="text-muted">7602632739</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Address</strong>
+                                                            <br>
+                                                            <p class="text-muted">Sonarpur, Kamrabad (N), Kol-700150</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>IM</strong>
+                                                            <br>
+                                                            <p class="text-muted">SIdd12345 (SKYPE)</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Birthday</strong>
+                                                            <br>
+                                                            <p class="text-muted">1992-03-01</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="about-info-p">
+                                                            <strong>Marital Status</strong>
+                                                            <br>
+                                                            <p class="text-muted">Single </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+                                        <!-- Personal-Information -->
+                                        <div class="panel panel-default panel-fill" id="decision_contact1">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Contact Preferences <img id="decision_contact11"
+                                                                                                 src="http://linkedin-clone.itechscripts.com/site_assets/img/load.gif"
+                                                                                                 style="width:22px;height:22px;display:none;"/><span
+                                                        id="decision_contact"><a
+                                                        class="btn btn-default panel-title pull-right"
+                                                        style="border: none;color:blue;"
+                                                        href="javascript:ajax_contact_preference_field();"><i
+                                                        class="fa fa-plus"></i> Add / Update Contact Preferences</a></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row" id="ajax_contact_preference_field">
+
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Career opportunities</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Expertise requests</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Consulting offers</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" checked disabled
+                                                                       class="colored-success">
+                                                                <span class="text">Business deals</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">New ventures</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Personal reference requests</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Job inquiries</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-4 col-xs-4">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="colored-success" checked disabled
+                                                                       type="checkbox">
+                                                                <span class="text">Requests to reconnect</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- Personal-Information -->
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--<div class="tab-content profile-tab-content">
+                            <div class="tab-pane active" id="home-2">
+                                <div class="row">
+                                    <div class="col-md-4">-->
+
+                            <div class="tab-pane" id="friends-tab">
+                                <div class="container-fluid" style="padding: 0px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <form id="filter">
+                                                        <div class="card">
+                                                            <div class="panel-heading"
+                                                                 style="background-color: #fff;border-bottom: 1px solid #80808066 !important;">
+                                                                <h3 class="panel-title">Filter </h3>
+                                                            </div>
+                                                            <div class="card-body pb0">
+                                                                <div class="row" style="background-color:#fff;">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="sminput">Name</label>
+                                                                            <input type="text"
+                                                                                   onkeyup="ajax_find_people();"
+                                                                                   value="" id="name" name="name"
+                                                                                   class="form-control input-sm "
+                                                                                   placeholder="xyz">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--<div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="sminput">Email</label>
+                                                                        <input type="text" onkeyup="ajax_find_people();" value="" id="email"  name="email" class="form-control input-sm " placeholder="xyz@abc.com">
+                                                                    </div>
+                                                                    </div> -->
+
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="sminput">Country</label>
+                                                                            <select id="country"
+                                                                                    onchange="ajax_find_people(); fetch_city('country','cus_city');"
+                                                                                    name="country" class="form-control">
+                                                                                <option value="0" selected>Select
+                                                                                    Country
+                                                                                </option>
+
+
+                                                                                <div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+                                                                                    <h4>A PHP Error was encountered</h4>
+
+                                                                                    <p>Severity: Warning</p>
+                                                                                    <p>Message: Invalid argument
+                                                                                        supplied for foreach()</p>
+                                                                                    <p>Filename:
+                                                                                        account/my_profile.php</p>
+                                                                                    <p>Line Number: 871</p>
+
+
+                                                                                    <p>Backtrace:</p>
+
+
+                                                                                    <p style="margin-left:10px">
+                                                                                        File:
+                                                                                        /home/iprofessional/public_html/application/views/account/my_profile.php<br/>
+                                                                                        Line: 871<br/>
+                                                                                        Function: _error_handler </p>
+
+
+                                                                                    <p style="margin-left:10px">
+                                                                                        File:
+                                                                                        /home/iprofessional/public_html/application/controllers/Account.php<br/>
+                                                                                        Line: 385<br/>
+                                                                                        Function: view </p>
+
+
+                                                                                    <p style="margin-left:10px">
+                                                                                        File:
+                                                                                        /home/iprofessional/public_html/index.php<br/>
+                                                                                        Line: 315<br/>
+                                                                                        Function: require_once </p>
+
+
+                                                                                </div>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="sminput">City</label>
+                                                                            <select id="cus_city"
+                                                                                    onchange="ajax_find_people();"
+                                                                                    name="cus_city"
+                                                                                    class="form-control">
+                                                                                <option value="0" selected>Select city
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="sminput">Zip Code</label>
+                                                                            <input type="text"
+                                                                                   onkeyup="ajax_find_people();"
+                                                                                   value="" id="zip_code"
+                                                                                   name="zip_code"
+                                                                                   class="form-control input-sm "
+                                                                                   placeholder="700001">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <label for="sminput">User Type</label>
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input name="user_type"
+                                                                                       onclick="ajax_find_people();"
+                                                                                       value="1" class="colored-success"
+                                                                                       type="radio">
+                                                                                <span class="text"><b> Emplyer </b></span>
+                                                                            </label> &nbsp;
+
+                                                                            <label>
+                                                                                <input name="user_type"
+                                                                                       onclick="ajax_find_people();"
+                                                                                       value="2" class="colored-blue"
+                                                                                       type="radio">
+                                                                                <span class="text"> <b>Job seekers </b></span>
+                                                                            </label>
+
+                                                                            <label>
+                                                                                <input name="user_type"
+                                                                                       onclick="ajax_find_people();"
+                                                                                       value="3" class="colored-blue"
+                                                                                       type="radio">
+                                                                                <span class="text"> <b> Student </b></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Left column-->
+                                        <div class="col-md-8">
+                                            <div class="main-box clearfix" id="show_searching" style="display:none;">
+                                                <div class="table-responsive">
+                                                    <table class="table user-list">
+                                                        <thead>
+                                                        <tr style="background-color: #fff;">
+                                                            <th><span>People name</span></th>
+                                                            <th>&nbsp;</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <div>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td style="width: 100%;margin-left: 37px;"
+                                                                    align="center" colspan='2'>
+                                                                    <div>
+                                                                        <img src="http://linkedin-clone.itechscripts.com/site_assets/img/searching.gif"
+                                                                             style="max-width:200px;height:150px;"/><br>
+                                                                        <font color="grey" size="4px">Please
+                                                                            wait....</font>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </div>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div id="ajax_find_people">
+
+                                            </div>
+                                        </div>
+                                        <!-- Right column-->
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="photos-tab">
+                                <div class="container-fluid" style="padding: 0px;">
+                                    <div class="row" id="ajax_photo">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="videos-tab">
+                                <div class="container-fluid" style="padding: 0px;">
+                                    <div class="row" id="ajax_video">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Footer -->
+
+                <!-- End Footer -->
+
+            </div>
+            <!-- end container -->
+
+        </div>
+        <!-- end wrapper -->
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block afterjs %}
+<script>
+  new Vue({
+  el: '#app',
+  delimiters: ['[[', ']]'],
+  data () {
+    return {
+      info: null,
+      experience_list : []
+    }
+  },
+  mounted () {
+    axios
+      .get('/api/experience/?format=json')
+      .then(response => (this.experience_list = response.data))
+  }
+})
+
+</script>
+{% endblock %}
