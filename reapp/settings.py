@@ -77,7 +77,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [],
-        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -204,7 +204,6 @@ EMAIL_HOST_USER = FROM_EMAIL
 EMAIL_HOST_PASSWORD = 'yourgmailpw'
 EMAIL_PORT = 587
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 ##Auth Login Setting
 SOCIALACCOUNT_PROVIDERS = {
