@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.linkedin',
     'avatar',
+    'friendship',
+    'bootstrap4',
+    'crispy_forms',
     'apps.profile',
     'apps.experience',
     'apps.education',
@@ -51,9 +54,8 @@ INSTALLED_APPS = [
     'apps.company',
     'apps.job',
     'apps.chat',
-    'friendship',
-    'bootstrap4',
-    'crispy_forms',
+    'apps.skill',
+    'apps.language',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_FORMS = {'login': 'apps.profile.forms.MyCustomLoginForm'}

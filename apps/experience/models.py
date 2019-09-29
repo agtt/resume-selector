@@ -11,6 +11,7 @@ LANGUAGES = (
 )
 
 
+
 class Experience(models.Model):
     name = models.CharField(max_length=50,verbose_name="Company Name")
     position = models.CharField(max_length=150,verbose_name="Position")

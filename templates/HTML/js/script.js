@@ -123,13 +123,13 @@ $(window).on("load", function() {
 
     //  ============= SKILLS EDIT FUNCTION =========
 
-    $(".skills-open").on("click", function(){
-        $("#skills-box").addClass("open");
+    $(".skill-open").on("click", function(){
+        $("#skill-box").addClass("open");
         $(".wrapper").addClass("overlay");
         return false;
     });
     $(".close-box").on("click", function(){
-        $("#skills-box").removeClass("open");
+        $("#skill-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
         return false;
     });
