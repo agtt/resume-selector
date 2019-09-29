@@ -11,14 +11,15 @@ class AbstractBaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Education(AbstractBaseModel):
-    name = models.CharField(max_length=250,verbose_name="School Name")
-    degree = models.CharField(max_length=250,verbose_name="Degree")
-    chapter = models.CharField(max_length=250,verbose_name="Chapter")
-    link = models.URLField('School URL',blank=True)
-    start_date = models.DateField(null=True,blank=True)
-    end_date = models.DateField(null=True,blank=True)
-    #is_current = models.BooleanField(default=False,blank=True,null=True)
+    name = models.CharField(max_length=250, verbose_name="School Name")
+    degree = models.CharField(max_length=250, verbose_name="Degree")
+    chapter = models.CharField(max_length=250, verbose_name="Chapter")
+    link = models.URLField('School URL', blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    # is_current = models.BooleanField(default=False,blank=True,null=True)
     description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="education_user")
 
@@ -33,7 +34,6 @@ class Education(AbstractBaseModel):
                                                        "before end date."),
                                        "end_date": _("Start date must be "
                                                      "before end date.")})
-
 
     def get_absolute_url(self):
         return "/apps/education/"
