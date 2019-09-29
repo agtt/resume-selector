@@ -15,7 +15,7 @@ class LanguageSerializer(serializers.ModelSerializer):
         # exclude = ['user', ]
 
 
-class SkillViewSet(viewsets.ModelViewSet):
+class LanguageViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
