@@ -1,108 +1,91 @@
 {% load static %}
-<nav class="navbar navbar-white navbar-fixed-top" style="background-color: #4345f3;">
+<!--navbar-transparent-->
+<nav class="navbar navbar-expand-lg fixed-top" color-on-scroll="300">
     <div class="container">
-        <div class="row">
-            <div class="col-md-1">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                            aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a style="color: #fff;" class="navbar-brand" href="/"><b><img
-                            style="margin-top: -8px;height:45px;"
-                            src="{% get_media_prefix %}assets/images/logo-2.png"/></b></a>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:9px;padding-left: 109px;"><!--- SEARCH BAR -->
-                <div class="input-group">
-                    <input type="hidden" name="search_param" id="search_param" value="all">
-                    <input type="text" class="form-control " name="search_keyword" id="search_keyword"
-                           placeholder="Search term...">
-                    <span class="input-group-btn">
-                    <button onclick="search_site();" class="btn btn-default" type="button"><span
-                            class="glyphicon glyphicon-search"></span></button>
-                </span>
-                </div>
-            </div><!--- END SEARCH BAR -->
-            <div class="col-md-7 ">
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell" style="font-size:20px;" aria-hidden="true"></i> <span
-                                    class="caret" style="margin-top: -4px;"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% get_media_prefix %}account/people">Find People</a></li>
-                                <li><a href="{% get_media_prefix %}account/pending_request">Pending Request</a></li>
-                                <li><a href="{% get_media_prefix %}account/block_list">Block List</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                Group <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% get_media_prefix %}group/create_group">Create group</a></li>
-                                <li><a href="{% get_media_prefix %}group/my_group">Your groups</a></li>
-                                <li><a href="{% get_media_prefix %}group/posted_group">Groups creted by you</a></li>
-                                <li><a href="{% get_media_prefix %}group/find_group">Groups you may like</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                Companies <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/apps/company/list">List Companies</a></li>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                Jobs <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{% get_media_prefix %}job/job_search">Find Job</a></li>
-                                <li><a href="{% get_media_prefix %}job/post_job">Post Job</a></li>
-                                <li><a href="{% get_media_prefix %}job/posted_job">Posted Job</a></li>
-                                <li><a href="{% get_media_prefix %}job/save_job">Save Job</a></li>
-                                <li><a href="{% get_media_prefix %}job/apply_job">Apply Job</a></li>
-                            </ul>
-                        </li>
-                        {% if request.user.is_authenticated %}
-                         <li class="dropdown">
-                            <a href="#" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                My Profile <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">Profile</a></li>
-                                <li><a href="/profile/logout/">Logout</a></li>
-                            </ul>
-                        </li>
-                        {% else %}
-                          <li><a style="color: #fff;" href="/profile/signup">Registration</a>
-                        </li>
-                        <li><a style="color: #fff;" href="/profile/login">Sign In</a></li>
-
-                        {% endif %}
-
-                    </ul>
-                </div>
-            </div>
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/"><img width="125" src="/media/assets/img/logo.png"></a>
+            <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse"
+                    data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
         </div>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+
+                {% if request.user.is_authenticated %}
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="nc-icon nc-layout-11"></i>Experience
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/apps/experience">List Experience</a>
+                        <a class="dropdown-item" href="/apps/experience/create">Add Experience</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="nc-icon nc-book-bookmark"></i>Education
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/apps/education">List Education</a>
+                        <a class="dropdown-item" href="/apps/education/create">Add Education</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile" class="nav-link"><i class="nc-icon nc-book-bookmark"></i>My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/account/logout" class="nav-link"><i class="nc-icon nc-layout-11"></i>Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom"
+                       href="#" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                        <p class="d-lg-none">Twitter</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom"
+                       href="#" target="_blank">
+                        <i class="fa fa-facebook-square"></i>
+                        <p class="d-lg-none">Facebook</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                       href="#" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                        <p class="d-lg-none">Instagram</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom"
+                       href="#" target="_blank">
+                        <i class="fa fa-github"></i>
+                        <p class="d-lg-none">GitHub</p>
+                    </a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a href="/profile/login/" class="nav-link"><i class="nc-icon nc-layout-11"></i>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile/signup/"  class="nav-link"><i class="nc-icon nc-book-bookmark"></i>
+                        Register</a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+
     </div>
 </nav>

@@ -1,75 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Business Networking Script">
-    <meta name="keywords" content="business, networking, script">
-    <meta name="author" content="My Company">
-    <!--<link rel="icon" href="{% get_media_prefix %}site_assets/img/favicon.png">-->
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="{% get_media_prefix %}assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% get_media_prefix %}assets/img/apple-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
     <title>{% block title %}Resume Selector{% endblock %}</title>
-    <!-- Bootstrap core CSS -->
-     <link href="{% get_media_prefix %}site_assets/bootstrap.3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/font-awesome.4.6.1/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% get_media_prefix %}extra/js/font-awesome.min.css"/>
-    <link rel="stylesheet" href="{% get_media_prefix %}demo/demo.css"/>
-    <link rel="stylesheet" href="{% get_media_prefix %}extra/js/dist/css/Lobibox.min.css"/>
-    <link href="{% get_media_prefix %}site_assets/assets/css/animate.min.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/timeline.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/home.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/login_register.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/forms.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/errors.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/errors.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/profile.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/profile2.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/profile3.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/friends.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/friends_panel.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/list_users.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/messages.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/messages2.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/photos.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}site_assets/assets/css/buttons.css" rel="stylesheet">
-    <link href="{% get_media_prefix %}extra/modal_plugin/jquery.bootpop.css" rel="stylesheet" type="text/css">
 
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Bootstrap core CSS     -->
+    <link href="{% get_media_prefix %}assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{% get_media_prefix %}assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{% get_media_prefix %}assets/css/demo.css" rel="stylesheet"/>
+    <!-- Datepicker-->
+    <link href="{% get_media_prefix %}assets/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% get_media_prefix %}assets/css/nucleo-icons.css" rel="stylesheet">
+    {% block addcss%}{% endblock %}
 
 </head>
-
-
 <body>
 {% include "navbar.html" %}
+
 {% block content %}{% endblock %}
-
-<footer class="footer">
-    <div class="container footer-container pull-left">
-        <p class="text-muted">Copyright © Resume Selector - All rights reserved.</p>
-
-    </div>
-    <div class="container footer-container pull-right">
-        <p class="text-muted"><a href='#' style="float:right;text-decoration:none;">About Us</a></p>
+<footer class="footer section-dark">
+    <div class="container">
+        <div class="row">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">How work ?</a></li>
+                </ul>
+            </nav>
+            <div class="credits ml-auto">
+					<span class="copyright">
+						© <script>document.write(new Date().getFullYear())</script>, made with <i
+                            class="fa fa-heart heart"></i> Resume Selector
+					</span>
+            </div>
+        </div>
     </div>
 </footer>
+</body>
 
+<!-- Core JS Files -->
+<script src="{% get_media_prefix %}assets/js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="{% get_media_prefix %}assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+<script src="{% get_media_prefix %}assets/js/popper.js" type="text/javascript"></script>
+<script src="{% get_media_prefix %}assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{% get_media_prefix %}assets/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+{% block addjs %}{% endblock %}
 
-    <script src="{% get_media_prefix %}site_assets/assets/js/jquery.1.11.1.min.js"></script>
-    <script src="{% get_media_prefix %}site_assets/bootstrap.3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% get_media_prefix %}extra/modal_plugin/jquery.bootpop.js"></script>
-    <script src="{% get_media_prefix %}site_assets/assets/js/custom.js"></script>
-    <script src="{% get_media_prefix %}site_assets/assets/js/jquery.nicescroll.min.js"></script>
-    <script src="{% get_media_prefix %}vue/vue.js"></script>
-    <script src="{% get_media_prefix %}vue/axios.js"></script>
-    <script src="{% get_media_prefix %}vue/vuejs-paginator.js"></script>
-    <script src="{% get_media_prefix %}vue/custom.js"></script>
-    {% block afterjs %}{% endblock %}
+<!--  Paper Kit Initialization snd functons -->
+<script src="{% get_media_prefix %}assets/js/paper-kit.js?v=2.1.0"></script>
 </html>
-
