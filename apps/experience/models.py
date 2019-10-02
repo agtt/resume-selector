@@ -7,21 +7,16 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from apps.company.models import Company
 from apps.job.models import Industry
 
-LANGUAGES = (
-    ('TR', 'Turkish'),
-    ('EN', 'English'),
-)
-
 
 class Experience(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="experience_company", blank=True)
     position = models.CharField(max_length=150, verbose_name="Position")
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="experience_industry", blank=True)
-    location = models.CharField(max_length=250, verbose_name="Location",blank=True)
+    location = models.CharField(max_length=250, verbose_name="Location", blank=True)
     start_date = models.DateField(null=True, blank=True, verbose_name=_("start date"))
     end_date = models.DateField(null=True, blank=True, verbose_name=_("end date"))
     description = models.TextField(default=None, null=True, blank=True, verbose_name=_("description"))
-    link = models.URLField(blank=True, verbose_name="Company URL",null=True)
+    link = models.URLField(blank=True, verbose_name="Company URL", null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="experience_user")
 
     def __repr__(self):
