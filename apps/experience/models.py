@@ -20,7 +20,7 @@ class Experience(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="experience_user")
 
     def __repr__(self):
-        return '<Experience: %s>' % self.name
+        return '<Experience: %s>' % self.company
 
     def __str__(self):
         return self.name
