@@ -25,11 +25,13 @@ class Education(AbstractBaseModel):
                                    blank=True, null=True)
     degree = models.CharField(max_length=250, verbose_name="Degree", null=True, blank=True)
     chapter = models.CharField(max_length=250, verbose_name="Chapter", null=True, blank=True)
+    grade = models.CharField(max_length=250, verbose_name="Grade", null=True, blank=True)
     link = models.URLField('School URL', blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     present = models.BooleanField(blank=True, null=True, default=False)
     description = models.TextField(blank=True)
+    activities = models.TextField(blank=True, verbose_name="Activities and Societies")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="education_user")
 
     def __str__(self):
