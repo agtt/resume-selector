@@ -15,6 +15,7 @@ class Experience(models.Model):
     location = models.CharField(max_length=250, verbose_name="Location", blank=True)
     start_date = models.DateField(null=True, blank=True, verbose_name=_("start date"))
     end_date = models.DateField(null=True, blank=True, verbose_name=_("end date"))
+    present = models.BooleanField(blank=True,null=True,default=False)
     description = models.TextField(default=None, null=True, blank=True, verbose_name=_("description"))
     link = models.URLField(blank=True, verbose_name="Company URL", null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="experience_user")
