@@ -3,7 +3,10 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 
-# Create your models here.
+class University(models.Model):
+    name = models.CharField(max_length=250, verbose_name="University Name")
+
+
 class AbstractBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -13,7 +16,9 @@ class AbstractBaseModel(models.Model):
 
 
 class Education(AbstractBaseModel):
-    name = models.CharField(max_length=250, verbose_name="School Name")
+    name = models.CharField(max_length=250, verbose_name="School Name",null=True, blank=True)
+    university = models.ForeignKey(University, on_delete=models.CASCADE, related_name="education_university",
+                                   blank=True,null=True)
     degree = models.CharField(max_length=250, verbose_name="Degree")
     chapter = models.CharField(max_length=250, verbose_name="Chapter")
     link = models.URLField('School URL', blank=True)
