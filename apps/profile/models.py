@@ -1,19 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
+from apps.language.models import Language
+from apps.skill.models import Skill
 
 GENDER = (('man', 'Man'), ('woman', 'Woman'))
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, null=True, related_name="profile",verbose_name=_('User'), on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, related_name="profile", verbose_name=_('User'),
+                                on_delete=models.CASCADE)
     phone = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('Phone'))
     gender = models.CharField(max_length=40, blank=True, verbose_name=_('Gender'), choices=GENDER)
     avatar = models.ImageField(upload_to='userprofiles2/avatars', blank=True, verbose_name=_('Photo'))
     completion_level = models.PositiveSmallIntegerField(default=0, verbose_name=_('Profile completion percentage'))
     email_is_verified = models.BooleanField(default=False, verbose_name=_('Email is verified'))
     personal_info_is_completed = models.BooleanField(default=False, verbose_name=_('Personal info completed'))
+    languages = models.ManyToManyField(Language, blank=True)
+    skills = models.ManyToManyField(Skill, blank=True)
 
     class Meta:
         verbose_name = _('User profile')
