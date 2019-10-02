@@ -23,7 +23,7 @@ class Experience(models.Model):
         return '<Experience: %s>' % self.company
 
     def __str__(self):
-        return self.name
+        return self.company
 
     class Meta:
         ordering = ['-end_date']
