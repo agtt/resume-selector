@@ -16,8 +16,8 @@ class UserProfile(models.Model):
     completion_level = models.PositiveSmallIntegerField(default=0, verbose_name=_('Profile completion percentage'))
     email_is_verified = models.BooleanField(default=False, verbose_name=_('Email is verified'))
     personal_info_is_completed = models.BooleanField(default=False, verbose_name=_('Personal info completed'))
-    languages = models.ManyToManyField(Language, blank=True)
-    skills = models.ManyToManyField(Skill, blank=True)
+    languages = models.ManyToManyField(Language, blank=True, related_name="user_languages")
+    skills = models.ManyToManyField(Skill, blank=True, related_name="user_skills")
 
     class Meta:
         verbose_name = _('User profile')
