@@ -27,6 +27,7 @@ JOB_TYPE = (
 
 class Job(models.Model):
     name = models.CharField(max_length=250, verbose_name="Name", blank=True)
+    location = models.CharField(max_length=250, verbose_name="Location", blank=True)
     type = models.IntegerField(choices=JOB_TYPE, default=99)
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="job_industry", blank=True)
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name="job_section", blank=True)
