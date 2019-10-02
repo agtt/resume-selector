@@ -14,18 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from django.conf.urls.static import static
 from apps.views import *
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
-    path('panel/', admin.site.urls),
-    path('avatar/', include('avatar.urls')),
-    path('account/', include('allauth.urls')),
-    path('profile/', include('apps.profile.urls')),
-    path('apps/', include('apps.urls')),
-    path('',homepage),
-    url(r'^api/', include('apps.rest_urls'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('panel/', admin.site.urls),
+                  path('avatar/', include('avatar.urls')),
+                  path('account/', include('allauth.urls')),
+                  path('profile/', include('apps.profile.urls')),
+                  path('apps/', include('apps.urls')),
+                  path('', homepage),
+                  url(r'^api/', include('apps.rest_urls')),
+                  # JWT Token
+                  path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+                  path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
+                                                                                           document_root=settings.MEDIA_ROOT)
