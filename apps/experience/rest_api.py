@@ -12,7 +12,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 
-
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
@@ -26,7 +25,6 @@ class ExperienceDetail(APIView):
     """
 
     permission_classes = (IsAuthenticated,)
-
 
     def get_object(self, pk):
         try:
@@ -57,6 +55,8 @@ class ExperienceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    permission_classes = (IsAuthenticated,)
+
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
 
