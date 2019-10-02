@@ -13,7 +13,7 @@ class UserProfile(models.Model):
                                 on_delete=models.CASCADE)
     title = models.CharField(max_length=250, verbose_name="Name", blank=True,null=True)
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="profile_industry", blank=True)
-    description = models.TextField(default=None, null=True, blank=True, verbose_name=_("description"))
+    description = models.TextField(default=None, null=True, blank=True, verbose_name=_("Description"))
     phone = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('Phone'))
     gender = models.CharField(max_length=40, blank=True, verbose_name=_('Gender'), choices=GENDER)
     background = models.ImageField(upload_to='userprofiles2/background', blank=True, verbose_name=_('Background'))
