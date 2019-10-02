@@ -19,7 +19,6 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from apps.views import *
-from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
                   path('panel/', admin.site.urls),
@@ -28,9 +27,6 @@ urlpatterns = [
                   path('profile/', include('apps.profile.urls')),
                   path('apps/', include('apps.urls')),
                   path('', homepage),
-                  url(r'^api/', include('apps.rest_urls')),
-                  # JWT Token
-                  path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-                  path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+                  url(r'^api/', include('apps.rest_urls'))
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)
