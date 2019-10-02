@@ -20,10 +20,10 @@ class Experience(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="experience_user")
 
     def __repr__(self):
-        return '<Experience: %s>' % self.company
+        return '<Experience: %s>' % self.position
 
     def __str__(self):
-        return self.company
+        return self.position
 
     class Meta:
         ordering = ['-end_date']
