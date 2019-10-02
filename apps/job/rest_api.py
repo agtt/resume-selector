@@ -9,6 +9,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+
 
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,6 +32,7 @@ class JobViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    permission_classes = (IsAuthenticated,)
     queryset = Job.objects.all()
     serializer_class = JobSerializer
 
@@ -45,6 +48,7 @@ class IndustryViewset(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    permission_classes = (IsAuthenticated,)
     queryset = Industry.objects.all()
     serializer_class = IndustrySerilizer
 
@@ -53,5 +57,6 @@ class SectionViewset(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    permission_classes = (IsAuthenticated,)
     queryset = Section.objects.all()
     serializer_class = SectionSerilizer

@@ -1,7 +1,7 @@
 from .models import *
 from rest_framework.fields import CurrentUserDefault
 from rest_framework.views import APIView
-from rest_framework import viewsets , mixins,generics ,serializers
+from rest_framework import viewsets, mixins, generics, serializers
 from django.contrib.auth.models import User, Group
 from django.views.decorators.csrf import csrf_exempt
 from apps.rest_permissions import IsAuthenticatedOrReadOnly
@@ -9,15 +9,25 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+
+
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        exclude = ('user',)
+        fields = '__all__'
+        # exclude = ('user',)
+
+
 class ExperienceDetail(APIView):
     """
     Retrieve, update or delete a snippet instance.
     """
+
+    permission_classes = (IsAuthenticated,)
+
+
     def get_object(self, pk):
         try:
             return Experience.objects.get(pk=pk)
@@ -41,6 +51,7 @@ class ExperienceDetail(APIView):
         snippet = self.get_object(pk)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ExperienceViewSet(viewsets.ModelViewSet):
     """

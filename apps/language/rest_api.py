@@ -6,6 +6,7 @@ from rest_framework import viewsets, mixins
 from django.contrib.auth.models import User, Group
 from django.views.decorators.csrf import csrf_exempt
 from apps.rest_permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -19,5 +20,6 @@ class LanguageViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    permission_classes = (IsAuthenticated,)
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
