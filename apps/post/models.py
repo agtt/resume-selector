@@ -23,7 +23,7 @@ class Post(AbstractBaseModel):
 
 
 class Like(AbstractBaseModel):
-    point = models.IntegerField(choices=((1,1),(-1,-1)), blank=True)
+    point = models.IntegerField(choices=((1, 1), (-1, -1)), blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="like_post")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
 

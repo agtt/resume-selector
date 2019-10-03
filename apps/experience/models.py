@@ -9,7 +9,7 @@ from apps.job.models import Industry
 
 
 class Experience(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="experience_company", blank=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL,null=True, related_name="experience_company", blank=True)
     position = models.CharField(max_length=150, verbose_name="Position")
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="experience_industry", blank=True)
     location = models.CharField(max_length=250, verbose_name="Location", blank=True)
