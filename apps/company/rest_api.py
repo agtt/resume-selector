@@ -24,6 +24,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    http_method_names = ['get', 'head']
 
     # def get_queryset(self):
     #     return self.request.user.company_user.all()

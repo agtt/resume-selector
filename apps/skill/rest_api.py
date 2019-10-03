@@ -23,3 +23,4 @@ class SkillViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
+    http_method_names = ['get', 'head']
