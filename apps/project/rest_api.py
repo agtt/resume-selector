@@ -32,3 +32,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
     def get_object(self):
         pk = self.kwargs.get('pk')
         return self.request.user.project_user.get(pk=pk)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
