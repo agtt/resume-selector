@@ -402,7 +402,7 @@ class Friend(models.Model):
 
     to_user = models.ForeignKey(AUTH_USER_MODEL, models.CASCADE, related_name="friends")
     from_user = models.ForeignKey(
-        AUTH_USER_MODEL, models.CASCADE, related_name="_unused_friend_relation"
+        AUTH_USER_MODEL, models.CASCADE, related_name="friend_user"
     )
     created = models.DateTimeField(default=timezone.now)
 

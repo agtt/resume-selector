@@ -11,6 +11,7 @@ from apps.skill.rest_api import *
 from apps.language.rest_api import *
 from apps.profile.rest_api import *
 from apps.post.rest_api import *
+from apps.friendship.rest_api import *
 
 router = routers.DefaultRouter()
 router.register(r'experience', ExperienceViewSet)
@@ -24,6 +25,7 @@ router.register(r'skill', SkillViewSet)
 router.register(r'language', LanguageViewSet)
 router.register(r'profile', ProfileViewSet)
 router.register(r'post', PostViewSet)
+router.register(r'friend', FriendViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls) , name='api-main'),
