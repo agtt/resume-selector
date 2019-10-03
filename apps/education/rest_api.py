@@ -25,3 +25,10 @@ class EducationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
+
+    def get_queryset(self):
+        return self.request.user.education_user.all()
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return self.request.user.education_user.get(pk=pk)
