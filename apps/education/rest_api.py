@@ -12,9 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 class EducationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Education
-        fields = '__all__'
+        # fields = '__all__'
         depth = 1
-        # exclude = ['user',]
+        exclude = ['user', ]
 
 
 class EducationViewSet(viewsets.ModelViewSet):
@@ -32,3 +32,6 @@ class EducationViewSet(viewsets.ModelViewSet):
     def get_object(self):
         pk = self.kwargs.get('pk')
         return self.request.user.education_user.get(pk=pk)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, university_id=int(self.request.data['university']))
