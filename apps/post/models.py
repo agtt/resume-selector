@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class AbstractBaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
@@ -22,7 +23,7 @@ class Like(AbstractBaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
 
     def __str__(self):
-        return self.point
+        return str(self.point)
 
 
 class Post(AbstractBaseModel):
