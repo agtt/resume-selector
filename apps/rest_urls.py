@@ -25,6 +25,7 @@ router.register(r'skill', SkillViewSet)
 router.register(r'language', LanguageViewSet)
 router.register(r'profile', ProfileViewSet)
 router.register(r'post', PostViewSet)
+router.register(r'comment', CommentViewSet)
 router.register(r'friend', FriendViewSet)
 
 urlpatterns = [

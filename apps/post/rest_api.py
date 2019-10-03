@@ -10,11 +10,13 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class PostSerializer(serializers.ModelSerializer):
+    comment_post = serializers.StringRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Post
         # fields = '__all__'
         depth = 1
-        exclude = ['user',]
+        exclude = ['user', ]
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -35,3 +37,31 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        # fields = '__all__'
+        depth = 1
+        exclude = ['user', ]
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+
+    permission_classes = (IsAuthenticated,)
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        return self.request.user.comment_user.all()
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return self.request.user.comment_user.get(pk=pk)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, post_id=int(self.request.data['post']))
