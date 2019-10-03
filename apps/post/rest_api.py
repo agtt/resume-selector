@@ -12,9 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = '__all__'
+        # fields = '__all__'
         depth = 1
-        # exclude = ['user',]
+        exclude = ['user',]
 
 
 class PostViewSet(viewsets.ModelViewSet):
