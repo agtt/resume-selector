@@ -12,8 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = '__all__'
-        # exclude = ['user',]
+        # fields = '__all__'
+        depth = 1
+        exclude = ['user',]
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -24,3 +25,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = UserProfile.objects.all()
     serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(pk=self.request.user.id)

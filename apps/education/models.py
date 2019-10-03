@@ -23,9 +23,9 @@ class Education(AbstractBaseModel):
     name = models.CharField(max_length=250, verbose_name="School Name", null=True, blank=True)
     university = models.ForeignKey(University, on_delete=models.CASCADE, related_name="education_university",
                                    blank=True, null=True)
-    degree = models.CharField(max_length=250, verbose_name="Degree", null=True, blank=True)
-    chapter = models.CharField(max_length=250, verbose_name="Chapter", null=True, blank=True)
-    grade = models.CharField(max_length=250, verbose_name="Grade", null=True, blank=True)
+    degree = models.CharField(max_length=250, verbose_name="Degree",blank=True)
+    chapter = models.CharField(max_length=250, verbose_name="Chapter", blank=True)
+    grade = models.CharField(max_length=250, verbose_name="Grade",blank=True)
     link = models.URLField('School URL', blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)

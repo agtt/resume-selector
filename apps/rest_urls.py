@@ -9,6 +9,7 @@ from apps.job.rest_api import *
 from apps.company.rest_api import *
 from apps.skill.rest_api import *
 from apps.language.rest_api import *
+from apps.profile.rest_api import *
 
 router = routers.DefaultRouter()
 router.register(r'experience', ExperienceViewSet)
@@ -20,6 +21,7 @@ router.register(r'section', SectionViewset)
 router.register(r'company', CompanyViewSet)
 router.register(r'skill', SkillViewSet)
 router.register(r'language', LanguageViewSet)
+router.register(r'profile', ProfileViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls) , name='api-main'),
