@@ -15,6 +15,7 @@ class Post(AbstractBaseModel):
     total_like = models.IntegerField(default=0, blank=True)
     total_dislike = models.IntegerField(default=0, blank=True)
     score = models.IntegerField(default=0, blank=True)
+    image = models.ImageField(upload_to='userprofiles2/posts', blank=True, verbose_name="Image")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_user")
 
     def __str__(self):
