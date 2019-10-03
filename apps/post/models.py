@@ -22,9 +22,10 @@ class Post(AbstractBaseModel):
         return self.content
 
 
-class Like(AbstractBaseModel):
+class Like(models.Model):
     point = models.IntegerField(choices=((1, 1), (-1, -1)), blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="like_post")
+    created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="like_user")
 
     def __str__(self):

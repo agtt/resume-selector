@@ -10,7 +10,6 @@ from apps.company.rest_api import *
 from apps.skill.rest_api import *
 from apps.language.rest_api import *
 from apps.profile.rest_api import *
-from apps.friend.rest_api import *
 from apps.post.rest_api import *
 
 router = routers.DefaultRouter()
@@ -24,7 +23,6 @@ router.register(r'company', CompanyViewSet)
 router.register(r'skill', SkillViewSet)
 router.register(r'language', LanguageViewSet)
 router.register(r'profile', ProfileViewSet)
-router.register(r'friend', FriendViewSet)
 router.register(r'post', PostViewSet)
 
 urlpatterns = [
