@@ -13,7 +13,6 @@ class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = '__all__'
-        # exclude = ['user', ]
 
 
 class LanguageViewSet(viewsets.ModelViewSet):
@@ -23,3 +22,4 @@ class LanguageViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+    http_method_names = ['get', 'head']
