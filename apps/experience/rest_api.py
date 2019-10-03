@@ -15,8 +15,9 @@ from rest_framework.permissions import IsAuthenticated
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        # fields = '__all__'
-        exclude = ('user',)
+        fields = '__all__'
+        depth = 1
+        # exclude = ('user',)
 
 
 class ExperienceDetail(APIView):
