@@ -11,6 +11,7 @@ class AbstractBaseModel(models.Model):
 
 class Comment(AbstractBaseModel):
     name = models.TextField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user")
 
     def __str__(self):
         return self.name
@@ -30,6 +31,7 @@ class Post(AbstractBaseModel):
     likes = models.ManyToManyField(Like, blank=True, related_name="post_likes")
     total_like = models.IntegerField(default=0, blank=True)
     total_dislike = models.IntegerField(default=0, blank=True)
+    score = models.IntegerField(default=0, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_user")
 
     def __str__(self):

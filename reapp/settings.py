@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'apps.chat',
     'apps.skill',
     'apps.language',
+    'apps.post',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_FORMS = {'login': 'apps.profile.forms.MyCustomLoginForm'}
