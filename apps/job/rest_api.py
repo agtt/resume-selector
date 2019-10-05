@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from apps.rest_pagination import LargePagination
 
 
 class JobSerializer(serializers.ModelSerializer):
@@ -55,6 +56,7 @@ class IndustryViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Industry.objects.all()
     serializer_class = IndustrySerilizer
+    pagination_class = LargePagination
 
 
 class SectionViewset(viewsets.ModelViewSet):
@@ -64,3 +66,4 @@ class SectionViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Section.objects.all()
     serializer_class = SectionSerilizer
+    pagination_class = LargePagination
