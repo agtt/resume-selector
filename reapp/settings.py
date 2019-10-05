@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'apps.project',
     'apps.company',
     'apps.job',
-    'apps.chat',
+    'apps.message',
     'apps.skill',
     'apps.language',
     'apps.post',
