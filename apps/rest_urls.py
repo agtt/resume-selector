@@ -14,6 +14,7 @@ from apps.post.rest_api import *
 from apps.friendship.rest_api import *
 from apps.question.rest_api import *
 from apps.message.rest_api import *
+from apps.user.rest_api import *
 
 router = routers.DefaultRouter()
 router.register(r'experience', ExperienceViewSet)
@@ -32,6 +33,7 @@ router.register(r'friend', FriendViewSet)
 router.register(r'block', BlockViewSet)
 router.register(r'question', QuestionViewSet)
 router.register(r'message', MessageViewSet)
+router.register(r'user', UserViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls), name='api-main'),

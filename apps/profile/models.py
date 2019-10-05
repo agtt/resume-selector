@@ -12,13 +12,14 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, related_name="profile", verbose_name=_('User'),
                                 on_delete=models.CASCADE)
     title = models.CharField(max_length=250, verbose_name="Name", blank=True, null=True)
-    industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="profile_industry", blank=True)
+    industry = models.ForeignKey(Industry, on_delete=models.CASCADE, related_name="profile_industry", blank=True,
+                                 null=True)
     description = models.TextField(default=None, null=True, blank=True, verbose_name=_("Description"))
     phone = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('Phone'))
     gender = models.CharField(max_length=40, blank=True, verbose_name=_('Gender'), choices=GENDER)
     background = models.ImageField(upload_to='userprofiles2/background', blank=True, null=True,
                                    verbose_name=_('Background'))
-    avatar = models.ImageField(upload_to='userprofiles2/avatars', blank=True,null=True, verbose_name=_('Photo'))
+    avatar = models.ImageField(upload_to='userprofiles2/avatars', blank=True, null=True, verbose_name=_('Photo'))
     completion_level = models.PositiveSmallIntegerField(default=0, verbose_name=_('Profile completion percentage'))
     email_is_verified = models.BooleanField(default=False, verbose_name=_('Email is verified'))
     personal_info_is_completed = models.BooleanField(default=False, verbose_name=_('Personal info completed'))
