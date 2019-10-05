@@ -29,6 +29,7 @@ router.register(r'profile', ProfileViewSet)
 router.register(r'post', PostViewSet)
 router.register(r'comment', CommentViewSet)
 router.register(r'friend', FriendViewSet)
+router.register(r'block', BlockViewSet)
 router.register(r'question', QuestionViewSet)
 router.register(r'message', MessageViewSet)
 
