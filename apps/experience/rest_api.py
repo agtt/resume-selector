@@ -33,7 +33,10 @@ class ExperienceViewSet(viewsets.ModelViewSet):
 
     def get_object(self):
         pk = self.kwargs.get('pk')
-        return self.request.user.experience_user.get(pk=pk)
+        try:
+            return self.request.user.experience_user.get(pk=pk)
+        except Experience.DoesNotExist:
+            pass
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, company_id=int(self.request.data['company']),
