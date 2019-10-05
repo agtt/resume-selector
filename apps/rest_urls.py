@@ -1,4 +1,4 @@
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from django.urls import path
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
@@ -12,6 +12,7 @@ from apps.language.rest_api import *
 from apps.profile.rest_api import *
 from apps.post.rest_api import *
 from apps.friendship.rest_api import *
+from apps.question.rest_api import *
 
 router = routers.DefaultRouter()
 router.register(r'experience', ExperienceViewSet)
@@ -27,9 +28,10 @@ router.register(r'profile', ProfileViewSet)
 router.register(r'post', PostViewSet)
 router.register(r'comment', CommentViewSet)
 router.register(r'friend', FriendViewSet)
+router.register(r'question', QuestionViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls) , name='api-main'),
+    url(r'^', include(router.urls), name='api-main'),
     path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
