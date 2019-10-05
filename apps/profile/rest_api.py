@@ -14,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         # fields = '__all__'
         depth = 1
-        exclude = ['user',]
+        exclude = ['user', ]
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -25,6 +25,16 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = UserProfile.objects.all()
     serializer_class = ProfileSerializer
+    pagination_class = None
 
     def get_queryset(self):
-        return UserProfile.objects.filter(pk=self.request.user.id)
+        return UserProfile.objects.filter(user=self.request.user)
+
+    def get_object(self):
+        try:
+            return UserProfile.objects.get(user=self.request.user)
+        except UserProfile.DoesNotExist:
+            pass
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user, industry_id=int(self.request.data['industry']))
