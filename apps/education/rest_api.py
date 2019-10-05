@@ -22,7 +22,6 @@ class EducationViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
 
-    permission_classes = (IsAuthenticated,)
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
 

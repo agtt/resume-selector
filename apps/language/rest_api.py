@@ -19,7 +19,6 @@ class LanguageViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    permission_classes = (IsAuthenticated,)
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
     http_method_names = ['get', 'head']

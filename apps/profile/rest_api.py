@@ -22,7 +22,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
 
-    permission_classes = (IsAuthenticated,)
     queryset = UserProfile.objects.all()
     serializer_class = ProfileSerializer
     pagination_class = None

@@ -22,7 +22,6 @@ class QuestionViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    permission_classes = (IsAuthenticated,)
     queryset = Question.objects.all()
     serializer_class = Question
     http_method_names = ['get', 'head']

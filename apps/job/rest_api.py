@@ -37,7 +37,6 @@ class JobViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    permission_classes = (IsAuthenticated,)
     queryset = Job.objects.all()
     serializer_class = JobSerializer
 

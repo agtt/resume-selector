@@ -22,7 +22,6 @@ class FriendViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
 
-    permission_classes = (IsAuthenticated,)
     queryset = Friend.objects.all()
     serializer_class = FriendSerializer
 
@@ -47,7 +46,6 @@ class BlockViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
 
-    permission_classes = (IsAuthenticated,)
     queryset = Block.objects.all()
     serializer_class = BlockSerializer
 
